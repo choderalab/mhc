@@ -6,3 +6,4 @@ Goal: set up complex and solvent files {xml, pdb} for simulation in openmm
     - check comments
     - for both peptide alone and peptide with MHC
 2. Basic simulations in openmm to ensure stability
+    - openmm manual is useful for this
