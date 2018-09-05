@@ -4,7 +4,7 @@ from simtk.unit import *
 from sys import stdout
 
 pdb = PDBFile('1klu-pdbfixer-nosolvent.pdb')
-with open('system.xml', 'rb') as f:
+with open('system.xml', 'r') as f:
    system = XmlSerializer.deserialize(f.read())
 integrator = LangevinIntegrator(300*kelvin, 1/picosecond, 0.002*picoseconds)
 simulation = Simulation(pdb.topology, system, integrator)
