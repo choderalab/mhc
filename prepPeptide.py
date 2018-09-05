@@ -95,7 +95,7 @@ app.PDBFile.writeFile(fixer.topology, fixer.positions, open(output_filename, 'w'
 print('Creating OpenMM system...')
 system = forcefield.createSystem(fixer.topology, nonbondedMethod=nonbondedMethod,
                                  constraints=constraints, rigidWater=True, removeCMMotion=False)
-exit()
+
 # Minimimze to update positions.
 print('Minimizing...')
 integrator = openmm.VerletIntegrator(1.0 * unit.femtosecond)
