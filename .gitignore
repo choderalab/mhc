@@ -9,10 +9,6 @@ __pycache__/
 # PyCharm
 .idea
 
-# specific to molecular dynamics
-*.xml
-*.pdb
-
 # Distribution / packaging
 .Python
 build/
