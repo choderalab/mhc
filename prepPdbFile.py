@@ -18,8 +18,12 @@ from pdbfixer import PDBFixer
 # OPTIONS
 ################################################################################
 
-pdbid = '1klu' # PDB ID to retrieve
-chain_ids_to_keep = ['C'] # chains to keep
+pdbid = '1klu'  # PDB ID to retrieve
+chain_ids_to_keep = ['A', 'B', 'C']  # chains to keep
+if len(chain_ids_to_keep) > 1:
+    fnPrefix = pdbid + 'Complex'
+else:
+    fnPrefix = pdbid + 'Ligand'
 pH = 7.0 # pH
 forcefields_to_use = ['amber99sbildn.xml', 'tip3p.xml'] # list of forcefields to use in parameterization
 padding = 11.0 * unit.angstroms # padding to use for adding solvent
@@ -77,7 +81,7 @@ print('Adding missing hydrogens appropriate for pH %s' % pH)
 fixer.addMissingHydrogens(pH)
 
 # Write PDB file.
-output_filename = '%s-pdbfixer-nosolvent.pdb' % pdbid
+output_filename = '%s-pdbfixer-nosolvent.pdb' % fnPrefix
 print('Writing PDB file to "%s"...' % output_filename)
 app.PDBFile.writeFile(fixer.topology, fixer.positions, open(output_filename, 'w'))
 
@@ -87,7 +91,7 @@ if nonbondedMethod in [app.PME, app.CutoffPeriodic, app.Ewald]:
     fixer.addSolvent(padding=padding)
 
 # Write PDB file.
-output_filename = '%s-pdbfixer.pdb' % pdbid
+output_filename = '%s-pdbfixer.pdb' % fnPrefix
 print('Writing PDB file to "%s"...' % output_filename)
 app.PDBFile.writeFile(fixer.topology, fixer.positions, open(output_filename, 'w'))
 
@@ -106,15 +110,15 @@ state = context.getState(getPositions=True)
 fixer.positions = state.getPositions()
 
 # Write final coordinates.
-output_filename = '%s-minimized.pdb' % pdbid
+output_filename = '%s-minimized.pdb' % fnPrefix
 print('Writing PDB file to "%s"...' % output_filename)
 app.PDBFile.writeFile(fixer.topology, fixer.positions, open(output_filename, 'w'))
 
 # Serialize final coordinates.
 print('Serializing to XML...')
-system_filename = 'system.xml'
-integrator_filename = 'integrator.xml'
-state_filename = 'state.xml'
+system_filename = fnPrefix + 'System.xml'
+integrator_filename = fnPrefix + 'Integrator.xml'
+state_filename = fnPrefix + 'State.xml'
 write_file(system_filename, openmm.XmlSerializer.serialize(system))
 write_file(integrator_filename, openmm.XmlSerializer.serialize(integrator))
 state = context.getState(getPositions=True, getVelocities=True, getForces=True, getEnergy=True,
