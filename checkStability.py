@@ -3,8 +3,8 @@ from simtk.openmm import *
 from simtk.unit import *
 from sys import stdout
 
-pdb = PDBFile('1kluComplex-minimized.pdb')
-with open('1kluComplexSystem.xml', 'r') as f:
+pdb = PDBFile('1kluLigand-minimized.pdb')
+with open('1kluLigandSystem.xml', 'r') as f:
    system = XmlSerializer.deserialize(f.read())
 integrator = LangevinIntegrator(300*kelvin, 1/picosecond, 0.002*picoseconds)
 simulation = Simulation(pdb.topology, system, integrator)

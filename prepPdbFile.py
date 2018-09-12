@@ -19,7 +19,7 @@ from pdbfixer import PDBFixer
 ################################################################################
 
 pdbid = '1klu'  # PDB ID to retrieve
-chain_ids_to_keep = ['A', 'B', 'C']  # chains to keep
+chain_ids_to_keep = ['C'] #['A', 'B', 'C']  # chains to keep
 if len(chain_ids_to_keep) > 1:
     fnPrefix = pdbid + 'Complex'
 else:
@@ -88,7 +88,7 @@ app.PDBFile.writeFile(fixer.topology, fixer.positions, open(output_filename, 'w'
 if nonbondedMethod in [app.PME, app.CutoffPeriodic, app.Ewald]:
     # Add solvent.
     print('Adding solvent...')
-    fixer.addSolvent(padding=padding)
+    fixer.addSolvent(padding=padding, positiveIon='Na+', negativeIon='Cl-', ionicStrength=200e-3*unit.molar)
 
 # Write PDB file.
 output_filename = '%s-pdbfixer.pdb' % fnPrefix
