@@ -12,6 +12,7 @@ __pycache__/
 # modeling
 *.pdb
 *.xml
+*.out
 
 # Distribution / packaging
 .Python
