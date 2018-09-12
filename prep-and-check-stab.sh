@@ -17,7 +17,7 @@ LIGAND_XML_FN=$PDB_ID'-ligand-system.xml'
 COMPLEX_PDB_FN=$PDB_ID'-complex-minimized.pdb'
 COMPLEX_XML_FN=$PDB_ID'-complex-system.xml'
 
-echo 'checking stability of ligand'
-python checkStability.py -pdbfn LIGAND_PDB_FN -xmlfn LIGAND_XML_FN > ligand_stability.out
+#echo 'checking stability of ligand'
+#python checkStability.py -pdbfn $LIGAND_PDB_FN -xmlfn $LIGAND_XML_FN > ligand_stability.out
 echo 'checking stability of complex'
-python checkStability.py -pdbfn COMPLEX_PDB_FN -xmlfn COMPLEX_XML_FN > complex_stability.out
+python checkStability.py -pdbfn $COMPLEX_PDB_FN -xmlfn $COMPLEX_XML_FN > complex_stability.out

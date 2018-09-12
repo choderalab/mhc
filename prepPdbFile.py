@@ -68,7 +68,7 @@ def prep_pdb_file(pdbid, chain_ids_to_keep, fnId):
     fixer.addMissingHydrogens(pH)
 
     # Write PDB file.
-    output_filename = '%s-pdbfixer-nosolvent.pdb' % fnPrefix
+    output_filename = '%spdbfixer-nosolvent.pdb' % fnPrefix
     print('Writing PDB file to "%s"...' % output_filename)
     app.PDBFile.writeFile(fixer.topology, fixer.positions, open(output_filename, 'w'), keepIds=True)
 
@@ -78,7 +78,7 @@ def prep_pdb_file(pdbid, chain_ids_to_keep, fnId):
         fixer.addSolvent(padding=padding, positiveIon='Na+', negativeIon='Cl-', ionicStrength=200e-3*unit.molar)
 
     # Write PDB file.
-    output_filename = '%s-pdbfixer.pdb' % fnPrefix
+    output_filename = '%spdbfixer.pdb' % fnPrefix
     print('Writing PDB file to "%s"...' % output_filename)
     app.PDBFile.writeFile(fixer.topology, fixer.positions, open(output_filename, 'w'), keepIds=True)
 
@@ -97,7 +97,7 @@ def prep_pdb_file(pdbid, chain_ids_to_keep, fnId):
     fixer.positions = state.getPositions()
 
     # Write final coordinates.
-    output_filename = '%s-minimized.pdb' % fnPrefix
+    output_filename = '%sminimized.pdb' % fnPrefix
     print('Writing PDB file to "%s"...' % output_filename)
     app.PDBFile.writeFile(fixer.topology, fixer.positions, open(output_filename, 'w'), keepIds=True)
 
@@ -119,6 +119,6 @@ if __name__ == '__main__':
     opts = get_opts(argv)
     pdbid = opts['-pdbid']
     chain_string = opts['-chains']
-    chain_ids_to_keep = chain_string.split(',').replace(' ', '')
+    chain_ids_to_keep = chain_string.replace(' ', '').split(',')
     fnId = opts['-id']
     prep_pdb_file(pdbid, chain_ids_to_keep, fnId)
