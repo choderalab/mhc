@@ -70,7 +70,7 @@ def prep_pdb_file(pdbid, chain_ids_to_keep, fnId):
     # Write PDB file.
     output_filename = '%spdbfixer-nosolvent.pdb' % fnPrefix
     print('Writing PDB file to "%s"...' % output_filename)
-    app.PDBFile.writeFile(fixer.topology, fixer.positions, open(output_filename, 'w'), keepIds=True)
+    app.PDBFile.writeFile(fixer.topology, fixer.positions, open(output_filename, 'w'))#, keepIds=True)
 
     if nonbondedMethod in [app.PME, app.CutoffPeriodic, app.Ewald]:
         # Add solvent.
@@ -80,7 +80,7 @@ def prep_pdb_file(pdbid, chain_ids_to_keep, fnId):
     # Write PDB file.
     output_filename = '%spdbfixer.pdb' % fnPrefix
     print('Writing PDB file to "%s"...' % output_filename)
-    app.PDBFile.writeFile(fixer.topology, fixer.positions, open(output_filename, 'w'), keepIds=True)
+    app.PDBFile.writeFile(fixer.topology, fixer.positions, open(output_filename, 'w'))#, keepIds=True)
 
     # Create OpenMM System.
     print('Creating OpenMM system...')
@@ -99,7 +99,7 @@ def prep_pdb_file(pdbid, chain_ids_to_keep, fnId):
     # Write final coordinates.
     output_filename = '%sminimized.pdb' % fnPrefix
     print('Writing PDB file to "%s"...' % output_filename)
-    app.PDBFile.writeFile(fixer.topology, fixer.positions, open(output_filename, 'w'), keepIds=True)
+    app.PDBFile.writeFile(fixer.topology, fixer.positions, open(output_filename, 'w'))#, keepIds=True)
 
     # Serialize final coordinates.
     print('Serializing to XML...')
