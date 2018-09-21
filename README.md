@@ -1,9 +1,4 @@
-# hladr1-tpi
-Goal: set up complex and solvent files {xml, pdb} for simulation in openmm
-1. From RCSB PDB file, solvate, minimize energy, and write out serialized xml and pdb files.
-    - as much resolved density as possible
-    - check for missing loops
-    - check comments
-    - for both peptide alone and peptide with MHC
-2. Basic simulations in openmm to ensure stability
-    - openmm manual is useful for this
+# boehm-1klu
+This project applies YANK to calculate free energy for ligand interactions with MHC class II.
+
+The user specifies the PDB_ID, COMPLEX_CHAINS, and LIGAND_CHAINS in prep-and-check-stab.sh, then runs this script. Next, one runs 1klu.sh to run the YANK simulations.
